@@ -42,9 +42,6 @@ crs = driver.find_element(By.LINK_TEXT, "Introductory Psychology")
 crs = driver.find_element(By.LINK_TEXT, "Introductory Psychology").send_keys(Keys.ENTER)
 
 #copies course data
-# sectionNum1 = driver.find_element(By.ID, 'sectionNumber')
-# webdriver.ActionChains(driver).double_click(sectionNum1).key_down(Keys.META).send_keys('c').perform()
-
 
 xOffset = 734
 yOffset = 292
