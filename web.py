@@ -12,7 +12,8 @@ searchBtn = driver.find_element(By.LINK_TEXT, "Sign in")
 webdriver.ActionChains(driver).double_click(searchBtn).perform()
 
 #locates signin element and complete sing in
-Singin = driver.find_element(By.NAME, "identifier").send_keys("michaeldturner21@gmail.com" + Keys.ENTER)
+email = 'John.Doe@gmail.com'
+Singin = driver.find_element(By.NAME, "identifier").send_keys(email + Keys.ENTER)
 
 # retry = driver.find_element(By.LINK_TEXT, "Try again")
 # webdriver.ActionChains(driver).double_click(retry).perform()
