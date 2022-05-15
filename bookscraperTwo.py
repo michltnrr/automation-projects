@@ -46,3 +46,36 @@ crs = driver.find_element(By.LINK_TEXT, "Introductory Psychology").send_keys(Key
 xOffset = 734
 yOffset = 292
 webdriver.ActionChains(driver).move_by_offset(xOffset,yOffset).key_down(Keys.META).send_keys('c').perform()
+time.sleep(5)
+
+# copies & saves class data 
+findNum = driver.find_element(By.XPATH, "//table[@class='basePreqTable']") #enter tag, and unique element 
+webdriver.ActionChains(driver).move_to_element(findNum).click(findNum).key_down(Keys.META).send_keys('c').perform()
+
+time.sleep(1)
+driver.switch_to.new_window('tab')
+driver.get('https://wayne.bncollege.com/?utm_source=google&utm_medium=cpc&utm_campaign=Act740%3EPar740%3EWayne+State+University%3ESX%3EBook+Store&s_kwcid=AL!14348!3!565956682773!e!!g!!wayne%20state%20bookstore&gclsrc=aw.ds&gclid=EAIaIQobChMIgeiSyJLi9wIVuRPUAR1-dAwpEAAYASAAEgJTQfD_BwE')
+
+# webdriver.ActionChains(driver).move_by_offset(xOffset, yOffest).key_down(Keys.META).send_keys('c').perform()
+
+#enters copied data into bookstore
+time.sleep(1)
+bkLnk = driver.find_element(By.XPATH, "//a[@title='Course Materials & Textbooks']")
+webdriver.ActionChains(driver).click(bkLnk).perform()
+
+books = driver.find_element(By.XPATH, "//a[@title='Find Course Materials']")
+webdriver.ActionChains(driver).click(books).perform()
+
+#copying 
+time.sleep(2)
+driver.execute_script("window.scrollBy(0, 750)")
+
+
+# term = driver.find_element(By.XPATH, "//span[@id='select2-nlqc-container']")
+# ActionChains(driver).scroll(0, 0, 0, 0, origin=term).perform()
+
+# webdriver.ActionChains(driver).click(term).perform()
+# term = driver.find_element(By.XPATH, "//span[@title= ' Select']").send_keys(Keys.DOWN)
+# term = driver.find_element(By.XPATH, "//span[@title= ' Select']").send_keys(Keys.ENTER)
+
+
