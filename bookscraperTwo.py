@@ -1,4 +1,5 @@
 from selenium import webdriver
+# webdriver.Safari(executable_path='/usr/bin/safaridriver')
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 import time
@@ -41,11 +42,10 @@ webdriver.ActionChains(driver).double_click(sch).perform()
 crs = driver.find_element(By.LINK_TEXT, "Introductory Psychology")
 crs = driver.find_element(By.LINK_TEXT, "Introductory Psychology").send_keys(Keys.ENTER)
 
-#copies course data
+#finds class data
 
-xOffset = 734
-yOffset = 292
-webdriver.ActionChains(driver).move_by_offset(xOffset,yOffset).key_down(Keys.META).send_keys('c').perform()
+numLnk = driver.find_element(By.LINK_TEXT, 'Linked Sections')
+webdriver.ActionChains(driver).click(numLnk).perform()
 time.sleep(5)
 
 # copies & saves class data 
@@ -68,14 +68,14 @@ webdriver.ActionChains(driver).click(books).perform()
 
 #copying 
 time.sleep(2)
-driver.execute_script("window.scrollBy(0, 750)")
 
 
-# term = driver.find_element(By.XPATH, "//span[@id='select2-nlqc-container']")
-# ActionChains(driver).scroll(0, 0, 0, 0, origin=term).perform()
+term = driver.find_element(By.XPATH, "//span[@id='select2-chex-container']")
+ActionChains(driver).scroll(0, 0, 0, 0, origin=term).perform()
 
 # webdriver.ActionChains(driver).click(term).perform()
 # term = driver.find_element(By.XPATH, "//span[@title= ' Select']").send_keys(Keys.DOWN)
 # term = driver.find_element(By.XPATH, "//span[@title= ' Select']").send_keys(Keys.ENTER)
+
 
 
