@@ -16,7 +16,6 @@ clsLnk = driver.find_element(By.ID, "classSearchLink")
 webdriver.ActionChains(driver).double_click(clsLnk).perform()
 
 #finds search box and selects class term
-
 Btn = driver.find_element(By.CLASS_NAME, 'select2-chosen')
 webdriver.ActionChains(driver).context_click(Btn).perform()
 
@@ -24,7 +23,6 @@ time.sleep(1)
 term = driver.find_element(By.ID, '202209')
 webdriver.ActionChains(driver).context_click(term).perform()
 
-# time.sleep(1)
 Slctrm = driver.find_element(By.CLASS_NAME, "form-button")
 webdriver.ActionChains(driver).double_click(Slctrm).perform()
 
@@ -44,16 +42,12 @@ webdriver.ActionChains(driver).double_click(sch).perform()
 crs = driver.find_element(By.LINK_TEXT, "Introductory Psychology")
 crs = driver.find_element(By.LINK_TEXT, "Introductory Psychology").send_keys(Keys.ENTER)
 
-#finds class data
 
-numLnk = driver.find_element(By.LINK_TEXT, 'Linked Sections')
-webdriver.ActionChains(driver).click(numLnk).perform()
-time.sleep(5)
-
-# copies & saves class data 
-findNum = driver.find_element(By.XPATH, "//table[@class='basePreqTable']") #enter tag, and unique element 
-webdriver.ActionChains(driver).move_to_element(findNum).click(findNum).key_down(Keys.META).send_keys('c').perform()
-
+# copies particular course number 
+time.sleep(1)
+crsNum = driver.find_element(By.XPATH, "//span[@id='courseNumber']") #enter tag, and unique element 
+webdriver.ActionChains(driver).move_to_element(crsNum).click(crsNum).key_down(Keys.META).send_keys('c').perform()
+orignial_window = driver.current_window_handle #stores current window to switch back later
 time.sleep(1)
 driver.switch_to.new_window('tab')
 driver.get('https://wayne.bncollege.com/?utm_source=google&utm_medium=cpc&utm_campaign=Act740%3EPar740%3EWayne+State+University%3ESX%3EBook+Store&s_kwcid=AL!14348!3!565956682773!e!!g!!wayne%20state%20bookstore&gclsrc=aw.ds&gclid=EAIaIQobChMIgeiSyJLi9wIVuRPUAR1-dAwpEAAYASAAEgJTQfD_BwE')
@@ -67,22 +61,39 @@ webdriver.ActionChains(driver).click(bkLnk).perform()
 books = driver.find_element(By.XPATH, "//a[@title='Find Course Materials']")
 webdriver.ActionChains(driver).click(books).perform()
 
-#copying 
-time.sleep(5)
+#copying (chooses term)
+time.sleep(3)
 term = driver.find_element(By.XPATH, "//span[@role='combobox']")
 webdriver.ActionChains(driver).move_to_element(term).click(term).perform()
 term = driver.find_element(By.XPATH, "//span[@role='combobox']").send_keys(Keys.DOWN)
 term = driver.find_element(By.XPATH, "//span[@role='combobox']").send_keys(Keys.ENTER)
 
+# chooses class dept.
 time.sleep(1) 
-# center = driver.find_element(By.XPATH, "//span[@title='Official Online Store of Wayne State University']")
-sbJct = driver.find_element(locate_with(By.TAG_NAME, "span").to_right_of(term))
-webdriver.ActionChains(driver).click(sbJct).perform()
+sbJct = driver.find_element(locate_with(By.TAG_NAME, "span").to_right_of({By.XPATH: "//span[@role='combobox']"}))
+time.sleep(1)
+webdriver.ActionChains(driver).send_keys(Keys.TAB).perform() #idk if assing a value to this action is sustainable
+webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
+drpMnt = driver.find_element(By.XPATH, "//input[@type='search']").send_keys('PSY')
+drpMnt = driver.find_element(By.XPATH, "//input[@type='search']").send_keys(Keys.ENTER)
 
-# sbJct = driver.find_element(By.XPATH, "//b[@role='presentation']").send_keys('PSY')
-# sbJct = driver.find_element(By.XPATH, "//b[@role='presentation']").send_keys(Keys.ENTER)
+#pastes in copied courseNum
+time.sleep(2)
+webdriver.ActionChains(driver).send_keys(Keys.TAB *2).perform()
+webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
+# SpcNum = driver.find_element(By.XPATH, "//input[@type='search']")
+# SpcNum = driver.find_element(By.XPATH, "//input[@type='search']").key_down(Keys.META).send_keys('v').perform()
+# webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
+webdriver.ActionChains(driver).key_down(Keys.META).send_keys('v').perform()
+webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
+# time.sleep(1)
 
 
 
-# term = driver.find_element(By.XPATH, "//span[@title= ' Select']").send_keys(Keys.DOWN)
-# term = driver.find_element(By.XPATH, "//span[@title= ' Select']").send_keys(Keys.ENTER)
+#back to tab copy and paste class section
+time.sleep(1)
+driver.switch_to.window(orignial_window)
+time.sleep(2)
+driver.fullscreen_window()
+webdriver.ActionChains(driver).double_click().perform()
+
