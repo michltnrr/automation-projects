@@ -43,10 +43,11 @@ crs = driver.find_element(By.LINK_TEXT, "Introductory Psychology")
 crs = driver.find_element(By.LINK_TEXT, "Introductory Psychology").send_keys(Keys.ENTER)
 
 
-# copies particular course number 
+# copies course and section number 
 time.sleep(1)
-crsNum = driver.find_element(By.XPATH, "//span[@id='courseNumber']") #enter tag, and unique element 
-webdriver.ActionChains(driver).move_to_element(crsNum).click(crsNum).key_down(Keys.META).send_keys('c').perform()
+crsNum = driver.find_element(By.XPATH, "//span[@id='courseNumber']").text 
+time.sleep(1)
+sctnNum = driver.find_element(By.XPATH, "//span[@id='sectionNumber']").text
 orignial_window = driver.current_window_handle #stores current window to switch back later
 time.sleep(1)
 driver.switch_to.new_window('tab')
@@ -55,6 +56,7 @@ driver.fullscreen_window()
 
 #enters copied data into bookstore
 time.sleep(1)
+second_window = driver.current_window_handle #store 
 bkLnk = driver.find_element(By.XPATH, "//a[@title='Course Materials & Textbooks']")
 webdriver.ActionChains(driver).click(bkLnk).perform()
 
@@ -84,16 +86,38 @@ webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
 # SpcNum = driver.find_element(By.XPATH, "//input[@type='search']")
 # SpcNum = driver.find_element(By.XPATH, "//input[@type='search']").key_down(Keys.META).send_keys('v').perform()
 # webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
-webdriver.ActionChains(driver).key_down(Keys.META).send_keys('v').perform()
+webdriver.ActionChains(driver).key_down(Keys.META).send_keys(crsNum).perform() #coursenumer is pasted
 webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
-# time.sleep(1)
+# time.sleep(2)
+webdriver.ActionChains(driver).send_keys(Keys.TAB).perform()
+webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
+webdriver.ActionChains(driver).key_down(Keys.META).send_keys(sctnNum).perform() #sectionnumber is pasted
+# webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
 
 
 
 #back to tab copy and paste class section
-time.sleep(1)
-driver.switch_to.window(orignial_window)
-time.sleep(2)
-driver.fullscreen_window()
-webdriver.ActionChains(driver).double_click().perform()
+
+
+# time.sleep(1)
+# driver.switch_to.window(orignial_window)
+# webdriver.ActionChains(driver).double_click().perform()
+# time.sleep(1)
+# # webdriver.ActionChains(driver).double_click().perform()
+# # sctnNum = driver.find_element(By.XPATH, "//span[@id='sectionNumber']").text
+# time.sleep(1)
+# driver.switch_to.window(second_window)
+# time.sleep(2)
+# webdriver.ActionChains(driver).double_click().perform()
+# time.sleep(2)
+
+
+
+# webdriver.ActionChains(driver).click(term).perform()
+# webdriver.ActionChains(driver).send_keys(Keys.TAB).perform()
+# time.sleep(3)
+# webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
+# webdriver.ActionChains(driver).send_keys(Keys.TAB *3).perform()
+# webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
+# webdriver.ActionChains(driver).key_down(Keys.META).send_keys(sctnNum).perform()
 
