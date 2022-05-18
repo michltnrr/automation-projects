@@ -206,8 +206,7 @@ bkSrch = driver.find_element(By.XPATH, "//input[@type='text']")
 
 webdriver.ActionChains(driver).click(bkSrch).send_keys(bookLnk)
 time.sleep(2)
-w
-ebdruver.ActionChains(driver).bkSrch.send_keys(Keys.SPACE + bookRthr)
+webdriver.ActionChains(driver).bkSrch.send_keys(Keys.SPACE + bookRthr)
 
 
 
