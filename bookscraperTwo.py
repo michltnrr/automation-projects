@@ -162,12 +162,14 @@ webdriver.ActionChains(driver).click(chkOut).perform()
 
 EC.element_to_be_clickable((By.XPATH, "//a[@href='/c/Introducing-Psychology-Achieve-Access/p/MBS_6879368_new']"))
 time.sleep(5)
-bookLnk = driver.find_element(By.XPATH, "//a[@href='/c/Introducing-Psychology-Achieve-Access/p/MBS_6879368_new']")
+# bookLnk = driver.find_element(By.XPATH, "//a[@href='/c/Introducing-Psychology-Achieve-Access/p/MBS_6879368_new']").text
+time.sleep(2)
+bookRthr = driver.find_element(By.XPATH, "//span[@class='author']").text
 # EC.element_to_be_clickable((By.TAG_NAME, 'a'))
 # time.sleep(6)
 # driver.implicitly_wait(7)
-# bookLnk = driver.find_element(By.XPATH, "//div@class='bned-product-name'/a/h2").text
-# bookLnk = driver.find_element(By.XPATH, "div[@class='bned-product-name']").text
+bookLnk = driver.find_element(By.XPATH, "//div[@class='bned-product-name']/a/h2").text
+# bookLnk = driver.find_element(By.XPATH, "//div[@class='bned-product-name']").text
 # driver.execute_script("arguments[0].scrollIntoView();", bookLnk)
 time.sleep(3)
 # webdriver.ActionChains(driver).move_to_element(bookLnk).key_down(Keys.META).send_keys('c').perform()
@@ -175,19 +177,37 @@ time.sleep(3)
 
 time.sleep(2)
 
+#enter copied data into search 
+
+
+
 driver.switch_to.new_window('tab')
-driver.get('https://www.google.com')
+driver.get('https://www.pdfdrive.com')
 time.sleep(2)
 driver.fullscreen_window()
-EC.element_to_be_clickable((By.TAG_NAME, 'q'))
-time.sleep(2)
-Googul = driver.find_element(By.NAME, 'q')
-webdriver.ActionChains(driver).click(Googul).perform()
-# webdriver.ActionChains(driver).move_to_element(bookLnk).key_down(Keys.META).send_keys('v').perform()
-webdriver.ActionChains(driver).send_keys(bookLnk).perform()
-# time.sleep(1)
-webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
 
+
+#code breaks here
+
+
+
+
+
+
+
+
+popUp = WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.CLASS_NAME, 'alerts-img')))
+exitBtn = driver.find_element()
+# time.sleep(4)
+webdriver.ActionChains(driver).click().perform()
+# EC.element_to_be_clickable((By.XPATH, "//input[@type='text']"))
+bkSrch = driver.find_element(By.XPATH, "//input[@type='text']")
+# bkSrch = driver.find_element(locate_with(By.XPATH, "//input[@type='text']")).to_right_of({BY.XPATH: "//img[@id='logo-img']"})
+
+webdriver.ActionChains(driver).click(bkSrch).send_keys(bookLnk)
+time.sleep(2)
+w
+ebdruver.ActionChains(driver).bkSrch.send_keys(Keys.SPACE + bookRthr)
 
 
 
