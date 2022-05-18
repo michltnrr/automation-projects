@@ -192,10 +192,6 @@ driver.fullscreen_window()
 
 
 
-
-
-
-
 popUp = WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.CLASS_NAME, 'alerts-img')))
 exitBtn = driver.find_element()
 # time.sleep(4)
