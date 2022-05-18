@@ -57,7 +57,8 @@ time.sleep(1)
 # webdriver.ActionChains(driver).move_to_element(Refnum).double_click(Refnum).key_down(Keys.META).send_keys('c').perform()
 time.sleep(1)
 
-crsNum = driver.find_element(By.XPATH, "//span[@id='courseNumber']").text 
+crsNum = driver.find_element(By.XPATH, "//span[@id='courseNumber']")
+
 time.sleep(1)
 # Lnk = driver.find_element(By.LINK_TEXT, 'Linked Sections')
 # webdriver.ActionChains(driver).click(Lnk).perform()
@@ -110,9 +111,10 @@ webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
 # SctnmBox = driver.find_element(By.XPATH, "//input[@type='search']")
 # SpcNum = driver.find_element(By.XPATH, "//input[@type='search']")
 # SpcNum = driver.find_element(By.XPATH, "//input[@type='search']").key_down(Keys.META).send_keys('v').perform()
-# webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
-webdriver.ActionChains(driver).key_down(Keys.META).send_keys(crsNum).perform() #coursenumber is pasted
 webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
+
+# webdriver.ActionChains(driver).key_down(Keys.META).send_keys(crsNum).perform() #coursenumber is pasted
+# webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
 
 
 time.sleep(2)
@@ -158,21 +160,34 @@ webdriver.ActionChains(driver).click(chkOut).perform()
 
 # copy title off book and enter in google search 
 
-
-bookLnk = driver.find_element(By.XPATH, "//a[@role='link']").text
+EC.element_to_be_clickable((By.XPATH, "//a[@href='/c/Introducing-Psychology-Achieve-Access/p/MBS_6879368_new']"))
+time.sleep(5)
+bookLnk = driver.find_element(By.XPATH, "//a[@href='/c/Introducing-Psychology-Achieve-Access/p/MBS_6879368_new']")
+# EC.element_to_be_clickable((By.TAG_NAME, 'a'))
+# time.sleep(6)
+# driver.implicitly_wait(7)
+# bookLnk = driver.find_element(By.XPATH, "//div@class='bned-product-name'/a/h2").text
+# bookLnk = driver.find_element(By.XPATH, "div[@class='bned-product-name']").text
+# driver.execute_script("arguments[0].scrollIntoView();", bookLnk)
+time.sleep(3)
+# webdriver.ActionChains(driver).move_to_element(bookLnk).key_down(Keys.META).send_keys('c').perform()
 
 
 time.sleep(2)
 
 driver.switch_to.new_window('tab')
 driver.get('https://www.google.com')
-
+time.sleep(2)
+driver.fullscreen_window()
+EC.element_to_be_clickable((By.TAG_NAME, 'q'))
+time.sleep(2)
 Googul = driver.find_element(By.NAME, 'q')
 webdriver.ActionChains(driver).click(Googul).perform()
-time.sleep(2)
-webdriver.ActionChains(driver).send_keys(bookLnk + ' pdf download').perform()
-time.sleep(1)
+# webdriver.ActionChains(driver).move_to_element(bookLnk).key_down(Keys.META).send_keys('v').perform()
+webdriver.ActionChains(driver).send_keys(bookLnk).perform()
+# time.sleep(1)
 webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
+
 
 
 
