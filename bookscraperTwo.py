@@ -12,10 +12,12 @@ driver.fullscreen_window()
 driver.get('https://registration.wayne.edu/StudentRegistrationSsb/ssb/registration')
 
 # locates appropiate link
+
 clsLnk = driver.find_element(By.ID, "classSearchLink")
 webdriver.ActionChains(driver).double_click(clsLnk).perform()
 
 #finds search box and selects class term
+
 Btn = driver.find_element(By.CLASS_NAME, 'select2-chosen')
 webdriver.ActionChains(driver).context_click(Btn).perform()
 
@@ -27,18 +29,21 @@ Slctrm = driver.find_element(By.CLASS_NAME, "form-button")
 webdriver.ActionChains(driver).double_click(Slctrm).perform()
 
 # inputs major 
+
 mjrBox = driver.find_element(By.CLASS_NAME, 'select2-choices')
 webdriver.ActionChains(driver).double_click(mjrBox).perform()
 mjrBox = driver.find_element(By.CLASS_NAME, 'select2-choices').send_keys('psychology')
 time.sleep(1)
 
 #selects item from dropdown
+
 mjrBox = driver.find_element(By.CLASS_NAME, 'select2-choices').send_keys(Keys.DOWN)
 mjrBox = driver.find_element(By.CLASS_NAME, 'select2-choices').send_keys(Keys.ENTER)
 sch = driver.find_element(By.ID, 'search-go')
 webdriver.ActionChains(driver).double_click(sch).perform()
 
 #finds class
+
 # crs = driver.find_element(By.LINK_TEXT, "Introductory Psychology")
 # crs = driver.find_element(By.LINK_TEXT, "Introductory Psychology").send_keys(Keys.ENTER)
 webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
@@ -46,6 +51,7 @@ webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
 
 # copies coursenumber and course reference number 
 time.sleep(1)
+
 
 # Refnum = driver.find_element(By.XPATH, "//span[@id='courseReferenceNumber']").text
 # webdriver.ActionChains(driver).move_to_element(Refnum).double_click(Refnum).key_down(Keys.META).send_keys('c').perform()
@@ -66,6 +72,7 @@ driver.get('https://wayne.bncollege.com/?utm_source=google&utm_medium=cpc&utm_ca
 driver.fullscreen_window()
 
 #enters copied data into bookstore
+
 time.sleep(1)
 second_window = driver.current_window_handle #store 
 bkLnk = driver.find_element(By.XPATH, "//a[@title='Course Materials & Textbooks']")
@@ -75,6 +82,7 @@ books = driver.find_element(By.XPATH, "//a[@title='Find Course Materials']")
 webdriver.ActionChains(driver).click(books).perform()
 
 #copying (chooses term)
+
 time.sleep(3)
 term = driver.find_element(By.XPATH, "//span[@role='combobox']")
 webdriver.ActionChains(driver).move_to_element(term).click(term).perform()
@@ -82,6 +90,7 @@ term = driver.find_element(By.XPATH, "//span[@role='combobox']").send_keys(Keys.
 term = driver.find_element(By.XPATH, "//span[@role='combobox']").send_keys(Keys.ENTER)
 
 # chooses class dept.
+
 # time.sleep(1) 
 # sbJct = driver.find_element(locate_with(By.TAG_NAME, "span").to_right_of({By.XPATH: "//span[@role='combobox']"}))
 time.sleep(1)
@@ -94,6 +103,7 @@ webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
 
 
 #pastes in copied courseNum
+
 time.sleep(2)
 webdriver.ActionChains(driver).send_keys(Keys.TAB *2).perform()
 webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
@@ -120,7 +130,7 @@ webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
 
 
 
-#scroll to bottom of page and click link 
+#scroll to bottom of page and click 'retrive materials' link 
 
 
 driver.execute_script("document.getElementById('email_id_desktop').scrollIntoView();")
@@ -129,5 +139,40 @@ time.sleep(3)
 
 getLnk = driver.find_element(locate_with(By.XPATH, "//a[@role='link']").to_right_of({By.XPATH: "//div[@class='bned-btn-text']"}))
 webdriver.ActionChains(driver).click(getLnk).perform()
+
+
+# add book to cart
+
+# time.sleep(4)
+
+# # driver.execute_script()
+time.sleep(3)
+wrkRnd = driver.find_element(locate_with(By.XPATH, "//a[@role='button']").below({By.XPATH: "//span[@class='bned-capitalize']"}))
+# wrkRnd = driver.find_element(locate_with(By.XPATH, "//span[@class='author']")).below({By.XPATH: "//span[@class='js-bned-item-name-text']"})
+# wrkRnd = driver.find_element(By.XPATH, "//span[@class='bned-capitalize']")
+driver.execute_script("arguments[0].scrollIntoView();", wrkRnd)
+webdriver.ActionChains(driver).click(wrkRnd).perform()
+
+chkOut = driver.find_element(By.XPATH, "//button[@alt='Proceed To Cart' ]")
+webdriver.ActionChains(driver).click(chkOut).perform()
+
+# copy title off book and enter in google search 
+
+
+bookLnk = driver.find_element(By.XPATH, "//a[@role='link']").text
+
+
+time.sleep(2)
+
+driver.switch_to.new_window('tab')
+driver.get('https://www.google.com')
+
+Googul = driver.find_element(By.NAME, 'q')
+webdriver.ActionChains(driver).click(Googul).perform()
+time.sleep(2)
+webdriver.ActionChains(driver).send_keys(bookLnk + ' pdf download').perform()
+time.sleep(1)
+webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
+
 
 
