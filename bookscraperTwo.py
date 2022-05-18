@@ -74,7 +74,7 @@ driver.fullscreen_window()
 
 #enters copied data into bookstore
 
-time.sleep(1)
+time.sleep(3)
 second_window = driver.current_window_handle #store 
 bkLnk = driver.find_element(By.XPATH, "//a[@title='Course Materials & Textbooks']")
 webdriver.ActionChains(driver).click(bkLnk).perform()
@@ -187,22 +187,34 @@ time.sleep(2)
 driver.fullscreen_window()
 
 
-#code breaks here
+#search for book in pdf site 
 
 
+EC.element_to_be_clickable((By.XPATH, "(//input[@type='text'])[2]"))
+bkSrch = driver.find_element(By.XPATH, "(//input[@type='text'])[2]") 
+bkSrch.send_keys(bookLnk)
+bkSrch.send_keys(Keys.SPACE + bookRthr)
+webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
 
 
-popUp = WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.CLASS_NAME, 'alerts-img')))
-exitBtn = driver.find_element()
-# time.sleep(4)
-webdriver.ActionChains(driver).click().perform()
-# EC.element_to_be_clickable((By.XPATH, "//input[@type='text']"))
-bkSrch = driver.find_element(By.XPATH, "//input[@type='text']")
-# bkSrch = driver.find_element(locate_with(By.XPATH, "//input[@type='text']")).to_right_of({BY.XPATH: "//img[@id='logo-img']"})
-
-webdriver.ActionChains(driver).click(bkSrch).send_keys(bookLnk)
+wait = WebDriverWait(driver, 30)
+# wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,".fas.fa-times"))).click()
 time.sleep(2)
-webdriver.ActionChains(driver).bkSrch.send_keys(Keys.SPACE + bookRthr)
 
 
+#select book after search
+
+time.sleep(3)
+getBook = driver.find_element(By.XPATH, "//div[@class='file-right']/a/h2")
+webdriver.ActionChains(driver).move_to_element(getBook).click(getBook).perform()
+
+
+
+# click download button
+
+EC.element_to_be_clickable((By.XPATH, "//span[@id='download-button']/a"))
+wait = WebDriverWait(driver, 10)
+dwnldBtn = driver.find_element(By.XPATH, "//span[@id='download-button']/a")
+webdriver.ActionChains(driver).move_to_element(dwnldBtn).click(dwnldBtn).perform()
+time.sleep(13)
 
