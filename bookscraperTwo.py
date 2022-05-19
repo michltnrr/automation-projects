@@ -145,13 +145,9 @@ webdriver.ActionChains(driver).click(getLnk).perform()
 
 # add book to cart
 
-# time.sleep(4)
-
-# # driver.execute_script()
 time.sleep(3)
 wrkRnd = driver.find_element(locate_with(By.XPATH, "//a[@role='button']").below({By.XPATH: "//span[@class='bned-capitalize']"}))
-# wrkRnd = driver.find_element(locate_with(By.XPATH, "//span[@class='author']")).below({By.XPATH: "//span[@class='js-bned-item-name-text']"})
-# wrkRnd = driver.find_element(By.XPATH, "//span[@class='bned-capitalize']")
+
 driver.execute_script("arguments[0].scrollIntoView();", wrkRnd)
 webdriver.ActionChains(driver).click(wrkRnd).perform()
 
@@ -161,25 +157,14 @@ webdriver.ActionChains(driver).click(chkOut).perform()
 # copy title off book and enter in google search 
 
 EC.element_to_be_clickable((By.XPATH, "//a[@href='/c/Introducing-Psychology-Achieve-Access/p/MBS_6879368_new']"))
-time.sleep(5)
-# bookLnk = driver.find_element(By.XPATH, "//a[@href='/c/Introducing-Psychology-Achieve-Access/p/MBS_6879368_new']").text
+
 time.sleep(2)
 bookRthr = driver.find_element(By.XPATH, "//span[@class='author']").text
-# EC.element_to_be_clickable((By.TAG_NAME, 'a'))
-# time.sleep(6)
-# driver.implicitly_wait(7)
+
 bookLnk = driver.find_element(By.XPATH, "//div[@class='bned-product-name']/a/h2").text
-# bookLnk = driver.find_element(By.XPATH, "//div[@class='bned-product-name']").text
-# driver.execute_script("arguments[0].scrollIntoView();", bookLnk)
-time.sleep(3)
-# webdriver.ActionChains(driver).move_to_element(bookLnk).key_down(Keys.META).send_keys('c').perform()
 
 
-time.sleep(2)
-
-#enter copied data into search 
-
-
+#open pdf site
 
 driver.switch_to.new_window('tab')
 driver.get('https://www.pdfdrive.com')
@@ -187,8 +172,7 @@ time.sleep(2)
 driver.fullscreen_window()
 
 
-#search for book in pdf site 
-
+#get book title and enter in search
 
 EC.element_to_be_clickable((By.XPATH, "(//input[@type='text'])[2]"))
 bkSrch = driver.find_element(By.XPATH, "(//input[@type='text'])[2]") 
@@ -197,24 +181,40 @@ bkSrch.send_keys(Keys.SPACE + bookRthr)
 webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
 
 
-wait = WebDriverWait(driver, 30)
+
+#close pop up 
+
+# wait = WebDriverWait(driver, 30)
 # wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,".fas.fa-times"))).click()
-time.sleep(2)
+time.sleep(4)
+
+
+
+
 
 
 #select book after search
 
-time.sleep(3)
+# time.sleep(3)
 getBook = driver.find_element(By.XPATH, "//div[@class='file-right']/a/h2")
 webdriver.ActionChains(driver).move_to_element(getBook).click(getBook).perform()
 
 
 
-# click download button
 
-EC.element_to_be_clickable((By.XPATH, "//span[@id='download-button']/a"))
-wait = WebDriverWait(driver, 10)
+# close second pop up 
+
+wait = WebDriverWait(driver, 30)
+time.sleep(4)
+
+
+
+#click download button
+
 dwnldBtn = driver.find_element(By.XPATH, "//span[@id='download-button']/a")
-webdriver.ActionChains(driver).move_to_element(dwnldBtn).click(dwnldBtn).perform()
+webdriver.ActionChains(driver).click(dwnldBtn).perform()
 time.sleep(13)
+
+Realdwnld = driver.find_element(By.CLASS_NAME, "btn.btn-primary.btn-user")
+webdriver.ActionChains(driver).click(Realdwnld).perform()
 
