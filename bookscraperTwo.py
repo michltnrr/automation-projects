@@ -128,12 +128,8 @@ clearBtn = driver.find_element(By.XPATH, "//a[@class='js-clear-row']")
 SctnmBox = driver.find_element(locate_with(By.XPATH, "//span[@role='textbox']").to_left_of({By.XPATH: "//a[@class='js-clear-row']"})) #.send_keys(sctnNum).perform()
 webdriver.ActionChains(driver).click(SctnmBox).perform()
 webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
-# time.sleep(2)
-
-
 
 #scroll to bottom of page and click 'retrive materials' link 
-
 
 driver.execute_script("document.getElementById('email_id_desktop').scrollIntoView();")
 
@@ -200,13 +196,10 @@ getBook = driver.find_element(By.XPATH, "//div[@class='file-right']/a/h2")
 webdriver.ActionChains(driver).move_to_element(getBook).click(getBook).perform()
 
 
-
-
 # close second pop up 
 
 wait = WebDriverWait(driver, 30)
 time.sleep(4)
-
 
 
 #click download button
