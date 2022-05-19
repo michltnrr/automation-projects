@@ -184,14 +184,8 @@ webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
 # wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,".fas.fa-times"))).click()
 time.sleep(4)
 
-
-
-
-
-
 #select book after search
 
-# time.sleep(3)
 getBook = driver.find_element(By.XPATH, "//div[@class='file-right']/a/h2")
 webdriver.ActionChains(driver).move_to_element(getBook).click(getBook).perform()
 
