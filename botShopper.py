@@ -20,7 +20,6 @@ def initiation():
         driver.get('https://www.amazon.com')
         time.sleep(1)
         driver.fullscreen_window()
-        # time.sleep(1)
         srch = driver.find_element(By.XPATH, "//input[@type='text']")
         webdriver.ActionChains(driver).click(srch).send_keys(product).send_keys(Keys.ENTER).perform()
      
