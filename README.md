@@ -6,6 +6,8 @@ Projects:
 
 
 what they do:
+
+
 Bookscraper: 
     - goes to my uni's registration site
     - finds major 
