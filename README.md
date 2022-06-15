@@ -8,7 +8,7 @@ Projects:
 what they do:
 
 
-Bookscraper: 
+- Bookscraper
     - goes to my uni's registration site
     - finds major 
     - finds class within major 
@@ -16,7 +16,7 @@ Bookscraper:
     - goes to pdf site, copies data into search bar
     - downloads book 
 
-botShopper:
+- botShopper
   - asks user what site the wanna shop from & item they wanna purchase
   - searches for item and purchases it 
 
