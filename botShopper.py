@@ -10,9 +10,7 @@ import time
 def initiation():
     
     print("Welcome to BotShopper!, please select from our options of sites to shop from")
-    print("1.Amazon")
-    print("2.Kroger")
-    print("3.Gamestop")
+    print("1.Amazon \n2.Kroger \n3.Gamestop")
     selection = int(input())
     
     if selection == 1:
