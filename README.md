@@ -8,7 +8,7 @@ Projects:
 what they do:
 
 
-- Bookscraper
+- Bookscraper (spaghetti code 💀)
     - goes to my uni's registration site
     - finds major 
     - finds class within major 
