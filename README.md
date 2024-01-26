@@ -22,5 +22,5 @@ what they do:
   - searches for item and purchases it
 
 - bloxstalk
-  - bloxstalk is a program that allows user to find when another player is online, the user provides the information on the player they're searching, and their own ogin data, then we search for the person their looking for an send an email if they're online
+  - bloxstalk is a program that allows user to find when another player is online, the user provides the information on the player they're searching, and their own login data, then we search for the person they're looking for and send an email if they're online
 
