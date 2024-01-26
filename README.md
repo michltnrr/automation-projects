@@ -1,4 +1,4 @@
-# selenium
+# Read this real quick bro
 Projects:
 
 - bookScraper
