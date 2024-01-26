@@ -19,12 +19,6 @@ def get_data():
     user_bloxpsrd = input("Enter your password: ")
     user_email = input("Enter your email: ")
 
-    # new_target = 'cheezyyz1'
-    # person = 'nbhd511'
-    # user_bloxname = 'blackrpatz'
-    # user_bloxpsrd = 'robloxislife'
-    # user_email = 'michaeldturner21@gmail.com'
-
     driver = webdriver.Safari()
 
     driver.get(f"https://www.roblox.com/search/users?keyword={person}")
