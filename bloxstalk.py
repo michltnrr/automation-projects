@@ -80,7 +80,7 @@ def email(person, user_email):
     
     
     #send email
-    sender_email = 'michlneuro15@gmail.com'
+    sender_email = '(email of email  that sends the email)'
     sender_pswrd = 'cyfh sqoc rssj owhs'
 
     message = MIMEMultipart()
