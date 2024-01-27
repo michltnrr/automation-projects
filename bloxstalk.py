@@ -81,7 +81,7 @@ def email(person, user_email):
     
     #send email
     sender_email = '(email of email  that sends the email)'
-    sender_pswrd = 'cyfh sqoc rssj owhs'
+    sender_pswrd = '(password of sender email)'
 
     message = MIMEMultipart()
     message['From'] = sender_email
