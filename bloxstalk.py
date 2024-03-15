@@ -14,8 +14,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 def get_data():
-    person = input("Enter persons roblox username: ")
-    user_bloxname = input("Enter your roblox username for login: ")
+    person = input("Enter person's Roblox username: ")
+    user_bloxname = input("Enter your Roblox username for login: ")
     user_bloxpsrd = input("Enter your password: ")
     user_email = input("Enter your email: ")
 
@@ -30,58 +30,48 @@ def get_data():
 
     return driver, person, user_bloxname, user_bloxpsrd, user_email
 
-
 def login(driver, user_bloxname, user_bloxpsrd):
     time.sleep(1)
-    login_btn = driver.find_element(By.ID, 'login-username').send_keys(user_bloxname)
+    driver.find_element(By.ID, 'login-username').send_keys(user_bloxname)
     time.sleep(1)
     webdriver.ActionChains(driver).send_keys(Keys.TAB).send_keys(user_bloxpsrd).perform()
     time.sleep(1)
     webdriver.ActionChains(driver).send_keys(Keys.ENTER).perform()
 
-
 def locate_victim(driver):
-    time.sleep(3)
-    accounts = driver.find_elements(By.CLASS_NAME, 'avatar-card-content')
+    time.sleep(5)
+    accounts = driver.find_elements(By.CLASS_NAME, 'avatar-card-link')
     if accounts:
         target = accounts[0]
         webdriver.ActionChains(driver).click(target).perform()
-        time.sleep(3)
 
-
-# ----------------------------------------------------        check if target is online       --------------------------------------------------------------
-
+        
 def is_online(driver, person, user_email):
-    first_check = True
     try:
-        if not first_check:
-            driver.refresh()
-            time.sleep(3)
-            """
-            may modify to check status even if the target isnt friends w the user
-            also want to send an alert when the email has been sent 
-            """
-        online = driver.find_element(By.CLASS_NAME, 'btn-join-game')
-        
-        if online:
-            email(person, user_email)
-
-
+        WebDriverWait(driver, 5).until(EC.presence_of_element_located((By.CLASS_NAME, 'btn-join-game')))
+        online_icon = driver.find_elements(By.CSS_SELECTOR, 'span[data-testid="presence-icon"]')
+        if online_icon:
+            for icon in online_icon:
+                title = icon.get_attribute('title')
+                if title and title != 'website':
+                    email(person, user_email)
+                    return
+        else:
+            online = driver.find_elements(By.CLASS_NAME, 'btn-join-game')
+            if online:
+                email(person, user_email)
     except NoSuchElementException:
-        print(f"{person} is currently offline 👎🏽")
-        # os.system('clear')
-        
-    first_check = False
+            print(f"{person} is not online 🫵 😂")
+
 
 def email(person, user_email):
-    #email content
+    # email content
     body = f"{person} is currently online ✅"
     subject = 'bloxstalk player status'
-    
-    
-    #send email
-    sender_email = '(email of email  that sends the email)'
-    sender_pswrd = '(password of sender email)'
+
+    # send email
+    sender_email = '()'
+    sender_pswrd = '()'
 
     message = MIMEMultipart()
     message['From'] = sender_email
@@ -95,15 +85,21 @@ def email(person, user_email):
         server.login(sender_email, sender_pswrd)
         text = message.as_string()
         server.sendmail(sender_email, user_email, text)
+    print('email sent 📧✅')
+    time.sleep(2)
+    exit()
 
 def main():
     driver, person, user_bloxname, user_bloxpsrd, user_email = get_data()
     login(driver, user_bloxname, user_bloxpsrd)
     locate_victim(driver)
     is_online(driver, person, user_email)
-    schedule.every(1).minutes.do(is_online)
+    
+    schedule.every(1).minutes.do(lambda: is_online(driver, person, user_email))
 
     while True:
         schedule.run_pending()
         time.sleep(1)
-main()
+
+if __name__ == "__main__":
+    main()
